@@ -3,6 +3,7 @@ import { Inventory } from "../domain/inventory/Inventory";
 
 interface IInventoryRepository {
   get(): Inventory;
+
   save(inventory: Inventory): void;
 }
 
@@ -18,7 +19,7 @@ export class InventoryService {
     eventBus: EventBus,
     private inventoryRepository: IInventoryRepository
   ) {
-    eventBus.listen("yak-milked", this.handleYakMilkedEvent);
+    eventBus.listen("YakMilkedEvent", this.handleYakMilkedEvent);
   }
 
   handleYakMilkedEvent = ({ liters }: YakMilkedEvent) => {
@@ -33,5 +34,6 @@ export class InventoryService {
     this.inventoryRepository.save(inventory);
   }
 
-  addSkin(amount: number) {}
+  addSkin(amount: number) {
+  }
 }
