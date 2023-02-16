@@ -3,9 +3,13 @@ import { Gender } from './Gender';
 import { Yak } from './Yak';
 import { YakRepository } from './YakRepository';
 
-type MilkYakCommand = {}
+type MilkYakCommand = {
+  readonly yakId: string;
+}
 
-type ShaveYakCommand = {}
+type ShaveYakCommand = {
+  readonly yakId: string;
+}
 
 
 type CreateYakCommand = {
@@ -23,14 +27,28 @@ export class YakService {
                   }: CreateYakCommand) {
     const yak = new Yak(undefined, name, gender, age)
     await this.yakRepository.save(yak);
-    await this.eventDispatcher.dispatch(yak.takeDomainEvents())
+    await this.eventDispatcher.dispatch(...yak.takeDomainEvents())
   }
 
-  async milkYak(milkCommand: MilkYakCommand) {
+  async milkYak({ yakId }: MilkYakCommand) {
+    const yak = this.getYak(yakId)
+
+    yak.milk()
+    await this.eventDispatcher.dispatch(...yak.takeDomainEvents())
+  }
+
+  async shave({ yakId }: ShaveYakCommand) {
+    const yak = this.getYak(yakId);
+    yak.shave()
+    await this.eventDispatcher.dispatch(...yak.takeDomainEvents())
 
   }
 
-  async shave(shaveCommand: ShaveYakCommand) {
-
+  private getYak(yakId: string) {
+    const yak = this.yakRepository.findYak(yakId)
+    if (!yak) {
+      throw new Error(`Yak not found with id ${yakId}`)
+    }
+    return yak;
   }
 }
