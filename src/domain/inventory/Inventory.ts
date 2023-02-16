@@ -1,9 +1,9 @@
-import { Entity } from "../ddd/Entity";
+import { Entity } from '../ddd/Entity';
 
 export class Inventory extends Entity {
   private constructor(
     private litersOfMilk: number,
-    private numberOfSkins: number
+    private numberOfSkins: number,
   ) {
     super();
   }
@@ -14,7 +14,7 @@ export class Inventory extends Entity {
     const newLitersOfMilk = this.litersOfMilk + liters;
 
     if (newLitersOfMilk > Inventory.MAX_LITERS) {
-      throw new Error("Max liters of milk reached");
+      throw new Error('Max liters of milk reached');
     }
 
     this.litersOfMilk = newLitersOfMilk;

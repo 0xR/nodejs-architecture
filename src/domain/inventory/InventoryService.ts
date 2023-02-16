@@ -1,19 +1,19 @@
-import { YakMilkedEvent } from "../domain-events";
-import type { IInventoryRepository } from "./InventoryRepository";
+import { YakMilkedEvent } from '../domain-events';
+import type { IInventoryRepository } from './InventoryRepository';
 
 type EventBus = {
   listen: (
-    type: YakMilkedEvent["type"],
-    fn: (event: YakMilkedEvent) => void
+    type: YakMilkedEvent['type'],
+    fn: (event: YakMilkedEvent) => void,
   ) => unknown;
 };
 
 export class InventoryService {
   constructor(
     eventBus: EventBus,
-    private inventoryRepository: IInventoryRepository
+    private inventoryRepository: IInventoryRepository,
   ) {
-    eventBus.listen("YakMilkedEvent", this.handleYakMilkedEvent);
+    eventBus.listen('YakMilkedEvent', this.handleYakMilkedEvent);
   }
 
   handleYakMilkedEvent = ({ liters }: YakMilkedEvent) => {

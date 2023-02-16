@@ -1,4 +1,4 @@
-import type { Inventory } from "./Inventory";
+import type { Inventory } from './Inventory';
 
 export interface IInventoryRepository {
   get(): Inventory;

@@ -8,7 +8,7 @@ export type DomainEvent = {
 };
 
 export type HerdCreatedEvent = {
-  type: 'HerdCreatedEvent',
+  type: 'HerdCreatedEvent';
   yak: {
     name: string;
     age: number;
@@ -17,17 +17,17 @@ export type HerdCreatedEvent = {
 } & DomainEvent;
 
 export type YakMilkedEvent = {
-  type: 'YakMilkedEvent',
+  type: 'YakMilkedEvent';
   yakId: string;
   liters: number;
 } & DomainEvent;
 
 export type YakShavedEvent = {
-  type: 'YakShavedEvent',
+  type: 'YakShavedEvent';
   yakId: string;
 } & DomainEvent;
 
 export type YakDiedEvent = {
-  type: 'YakDiedEvent',
+  type: 'YakDiedEvent';
   yakId: string;
 } & DomainEvent;
