@@ -31,6 +31,7 @@ export class Yak extends Entity {
       throw new Error('Cannot shave a dead yak')
     }
     const event: YakShavedEvent = {
+      type: 'YakShavedEvent',
       id: crypto.randomUUID(),
       yakId: this.id,
     }
@@ -47,12 +48,18 @@ export class Yak extends Entity {
     }
 
     const event: YakMilkedEvent = {
+      type: 'YakMilkedEvent',
       id: crypto.randomUUID(),
       yakId: this.id,
+      liters: this.getMilkCapacity()
     }
     this.domainEvents.push(event)
   }
 
+
+  private getMilkCapacity() {
+    return 50 - 0.03 * this.age;
+  }
 
   isAlive() {
     return this.age < 100;
