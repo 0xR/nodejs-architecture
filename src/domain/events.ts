@@ -3,7 +3,7 @@ export enum Gender {
   FEMALE
 }
 
-type Event = {
+export type Event = {
   id: string
 }
 
