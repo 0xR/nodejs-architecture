@@ -4,7 +4,7 @@ import { Gender } from './Gender';
 
 export class Yak extends Entity {
   constructor(
-    private id: string = crypto.randomUUID(),
+    readonly id: string = crypto.randomUUID(),
     private name: string,
     private gender: Gender,
     private age: number,

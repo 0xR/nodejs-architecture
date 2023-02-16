@@ -30,20 +30,20 @@ export class YakService {
   }
 
   async milkYak({ yakId }: MilkYakCommand) {
-    const yak = this.getYak(yakId);
+    const yak = await this.getYak(yakId);
 
     yak.milk();
     await this.eventDispatcher.dispatch(...yak.takeDomainEvents());
   }
 
   async shave({ yakId }: ShaveYakCommand) {
-    const yak = this.getYak(yakId);
+    const yak = await this.getYak(yakId);
     yak.shave();
     await this.eventDispatcher.dispatch(...yak.takeDomainEvents());
   }
 
-  private getYak(yakId: string) {
-    const yak = this.yakRepository.findYak(yakId);
+  private async getYak(yakId: string): Promise<Yak> {
+    const yak = await this.yakRepository.findYak(yakId);
     if (!yak) {
       throw new Error(`Yak not found with id ${yakId}`);
     }
