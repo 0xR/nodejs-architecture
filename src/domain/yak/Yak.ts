@@ -1,18 +1,14 @@
 import { Entity } from '../ddd/Entity';
 import { YakMilkedEvent, YakShavedEvent } from '../domain-events'
-
-export enum Gender {
-  MALE,
-  FEMALE
-}
+import { Gender } from './Gender';
 
 export class Yak extends Entity {
 
   constructor(
-    private id: string,
-    private age: number,
-    private gender: Gender,
+    private id: string = crypto.randomUUID(),
     private name: string,
+    private gender: Gender,
+    private age: number,
   ) {
     super();
 
