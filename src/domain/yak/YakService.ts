@@ -7,6 +7,7 @@ type MilkYakCommand = {
 type ShaveYakCommand = {
 }
 
+
 export class YakService {
   constructor(private yakRepository: YakRepository) {
   }

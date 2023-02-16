@@ -3,7 +3,7 @@ export enum Gender {
   FEMALE
 }
 
-export type Event = {
+export type DomainEvent = {
   id: string
 }
 
@@ -13,18 +13,18 @@ export type HerdCreatedEvent = {
     age: number;
     gender: Gender
   }[]
-} & Event;
+} & DomainEvent;
 
 
 export type YakMilkedEvent = {
   yakId: string
-} & Event;
+} & DomainEvent;
 
 export type YakShavedEvent = {
   yakId: string
-} & Event;
+} & DomainEvent;
 
 
 export type YakDiedEvent = {
   yakId: string
-} & Event;
+} & DomainEvent;
