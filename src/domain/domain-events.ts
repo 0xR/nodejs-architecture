@@ -1,30 +1,30 @@
 export enum Gender {
   MALE,
-  FEMALE
+  FEMALE,
 }
 
 export type DomainEvent = {
-  id: string
-}
+  id: string;
+  type: string;
+};
 
 export type HerdCreatedEvent = {
   yak: {
     name: string;
     age: number;
-    gender: Gender
-  }[]
+    gender: Gender;
+  }[];
 } & DomainEvent;
 
-
 export type YakMilkedEvent = {
-  yakId: string
+  yakId: string;
+  liters: number;
 } & DomainEvent;
 
 export type YakShavedEvent = {
-  yakId: string
+  yakId: string;
 } & DomainEvent;
 
-
 export type YakDiedEvent = {
-  yakId: string
+  yakId: string;
 } & DomainEvent;
