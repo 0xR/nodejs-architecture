@@ -1,11 +1,5 @@
-import { YakMilkedEvent } from "../domain/domain-events";
-import { Inventory } from "../domain/inventory/Inventory";
-
-interface IInventoryRepository {
-  get(): Inventory;
-
-  save(inventory: Inventory): void;
-}
+import { YakMilkedEvent } from "../domain-events";
+import type { IInventoryRepository } from "./InventoryRepository";
 
 type EventBus = {
   listen: (
@@ -34,6 +28,5 @@ export class InventoryService {
     this.inventoryRepository.save(inventory);
   }
 
-  addSkin(amount: number) {
-  }
+  addSkin(amount: number) {}
 }
