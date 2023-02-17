@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { YakModule } from './yak/yak.module';
+import { YakModule } from './modules/yak/yak.module';
 
 @Module({
   imports: [YakModule],
