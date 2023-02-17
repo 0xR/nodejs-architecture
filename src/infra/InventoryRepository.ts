@@ -1,4 +1,4 @@
-import { Inventory } from "../domain/inventory/Inventory";
+import { Inventory } from '../domain/inventory/Inventory';
 
 let storedInventory: Inventory = Inventory.create();
 

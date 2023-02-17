@@ -8,5 +8,4 @@ export class Entity {
     this.domainEvents = [];
     return events;
   }
-
 }
