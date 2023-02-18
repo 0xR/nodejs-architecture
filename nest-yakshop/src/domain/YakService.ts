@@ -1,11 +1,10 @@
-import { EventDispatcher } from '../../../domain/EventDispatcher';
+import { EventDispatcher } from './EventDispatcher';
 import { Gender } from './Gender';
 import { Yak } from './Yak';
 import { YakRepository } from './YakRepository';
 
 import { Injectable, Inject } from '@nestjs/common';
-import { YAK_REPOSITORY } from './yak.di-tokens';
-import { EVENT_DISPATCHER } from '../../../domain/domain.di-tokens';
+import { EVENT_DISPATCHER, YAK_REPOSITORY } from './domain.di-tokens';
 
 type MilkYakCommand = {
   readonly yakId: string;
