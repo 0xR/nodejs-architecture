@@ -1,13 +1,14 @@
 import { Inventory } from '../domain/inventory/Inventory';
+import { IInventoryRepository } from '../domain/inventory/InventoryRepository';
 
-let storedInventory: Inventory = Inventory.create();
+export class InventoryRepository implements IInventoryRepository {
+  storedInventory: Inventory = Inventory.create();
 
-export class InventoryRepository {
   get(): Inventory {
-    return storedInventory;
+    return this.storedInventory;
   }
 
   save(inventory: Inventory) {
-    storedInventory = inventory;
+    this.storedInventory = inventory;
   }
 }

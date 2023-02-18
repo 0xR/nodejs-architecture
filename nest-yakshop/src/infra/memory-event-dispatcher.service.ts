@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter } from 'node:events';
-import { DomainEvent } from '../domain/domain-events';
+import { DomainEvent, YakMilkedEvent } from '../domain/domain-events';
 import { EventDispatcher } from '../domain/ddd/EventDispatcher';
 
 @Injectable()
@@ -11,5 +11,12 @@ export class MemoryEventDispatcher implements EventDispatcher {
     domainEvents.forEach((domainEvent) => {
       this.eventEmitter.emit(domainEvent.type, domainEvent);
     });
+  }
+
+  listen(
+    type: YakMilkedEvent['type'],
+    fn: (event: YakMilkedEvent) => void,
+  ): void {
+    this.eventEmitter.on(type, fn);
   }
 }

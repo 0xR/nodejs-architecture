@@ -1,7 +1,7 @@
-import type { Inventory } from './Inventory';
+import { Inventory } from './Inventory';
 
-export interface IInventoryRepository {
-  get(): Inventory;
+export abstract class IInventoryRepository {
+  abstract get(): Inventory;
 
-  save(inventory: Inventory): void;
+  abstract save(inventory: Inventory): void;
 }

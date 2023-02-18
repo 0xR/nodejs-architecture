@@ -1,19 +1,15 @@
+import { Injectable } from '@nestjs/common';
+import { EventDispatcher } from '../ddd/EventDispatcher';
 import { YakMilkedEvent } from '../domain-events';
-import type { IInventoryRepository } from './InventoryRepository';
+import { IInventoryRepository } from './InventoryRepository';
 
-type EventBus = {
-  listen: (
-    type: YakMilkedEvent['type'],
-    fn: (event: YakMilkedEvent) => void,
-  ) => unknown;
-};
-
+@Injectable()
 export class InventoryService {
   constructor(
-    eventBus: EventBus,
+    private eventDispatcher: EventDispatcher,
     private inventoryRepository: IInventoryRepository,
   ) {
-    eventBus.listen('YakMilkedEvent', this.handleYakMilkedEvent);
+    eventDispatcher.listen('YakMilkedEvent', this.handleYakMilkedEvent);
   }
 
   handleYakMilkedEvent = ({ liters }: YakMilkedEvent) => {
