@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { YakService } from '../domain/YakService';
-import { YakRequestDto, YakResponseDto } from '../domain/YakDto';
+import { YakService } from '../domain/yak/YakService';
+import { YakRequestDto, YakResponseDto } from './YakDto';
 
 @Controller('yak')
 export class YakController {

@@ -1,4 +1,4 @@
-import { Gender } from './Gender';
+import { Gender } from '../domain/yak/Gender';
 
 export type YakRequestDto = {
   name: string;

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { EventDispatcher } from '../domain/EventDispatcher';
-import { YakRepository } from '../domain/YakRepository';
+import { EventDispatcher } from '../domain/ddd/EventDispatcher';
+import { YakRepository } from '../domain/yak/YakRepository';
 import { MemoryEventDispatcher } from './memory-event-dispatcher.service';
 import { MemoryYakRepository } from './MemoryYakRepository';
 

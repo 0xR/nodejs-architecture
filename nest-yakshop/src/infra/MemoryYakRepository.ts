@@ -1,5 +1,5 @@
-import { Yak } from '../domain/Yak';
-import { YakRepository } from '../domain/YakRepository';
+import { Yak } from '../domain/yak/Yak';
+import { YakRepository } from '../domain/yak/YakRepository';
 
 import { Injectable } from '@nestjs/common';
 

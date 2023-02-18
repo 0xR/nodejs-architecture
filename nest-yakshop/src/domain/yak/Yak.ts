@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { Entity } from './ddd/Entity';
-import { YakMilkedEvent, YakShavedEvent } from './domain-events';
+import { Entity } from '../ddd/Entity';
+import { YakMilkedEvent, YakShavedEvent } from '../domain-events';
 import { Gender } from './Gender';
 
 export class Yak extends Entity {

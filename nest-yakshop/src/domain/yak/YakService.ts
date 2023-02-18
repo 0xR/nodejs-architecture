@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EventDispatcher } from './EventDispatcher';
+import { EventDispatcher } from '../ddd/EventDispatcher';
 import { Gender } from './Gender';
 import { Yak } from './Yak';
 import { YakRepository } from './YakRepository';

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { YakService } from '../domain/YakService';
+import { YakService } from '../domain/yak/YakService';
 import { InfraModule } from '../infra/infra.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';

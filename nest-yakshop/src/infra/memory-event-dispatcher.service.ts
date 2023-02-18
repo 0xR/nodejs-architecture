@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter } from 'node:events';
 import { DomainEvent } from '../domain/domain-events';
-import { EventDispatcher } from '../domain/EventDispatcher';
+import { EventDispatcher } from '../domain/ddd/EventDispatcher';
 
 @Injectable()
 export class MemoryEventDispatcher implements EventDispatcher {
