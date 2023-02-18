@@ -1,10 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { EventDispatcher } from './EventDispatcher';
 import { Gender } from './Gender';
 import { Yak } from './Yak';
 import { YakRepository } from './YakRepository';
-
-import { Injectable, Inject } from '@nestjs/common';
-import { EVENT_DISPATCHER, YAK_REPOSITORY } from './domain.di-tokens';
 
 type MilkYakCommand = {
   readonly yakId: string;
@@ -23,9 +21,7 @@ type CreateYakCommand = {
 @Injectable()
 export class YakService {
   constructor(
-    @Inject(YAK_REPOSITORY)
     private yakRepository: YakRepository,
-    @Inject(EVENT_DISPATCHER)
     private eventDispatcher: EventDispatcher,
   ) {}
 

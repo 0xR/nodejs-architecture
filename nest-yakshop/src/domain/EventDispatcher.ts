@@ -1,5 +1,5 @@
 import { DomainEvent } from './domain-events';
 
-export interface EventDispatcher {
-  dispatch(...domainEvents: DomainEvent[]): Promise<void>;
+export abstract class EventDispatcher {
+  abstract dispatch(...domainEvents: DomainEvent[]): Promise<void>;
 }
