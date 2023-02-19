@@ -1,6 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
+import { configApp } from '../src/app/app.config';
 import { AppModule } from '../src/app/app.module';
 
 describe('AppController (e2e)', () => {
@@ -12,6 +13,7 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    configApp(app);
     await app.init();
   });
 
@@ -26,7 +28,12 @@ describe('AppController (e2e)', () => {
     await request(server)
       .post('/yak')
       .send([{ name: 'mock-yak' }])
-      .expect(400);
+      .expect(400)
+      .expect({
+        statusCode: 400,
+        message: ['gender should not be empty', 'age should not be empty'],
+        error: 'Bad Request'
+      });
   });
 
   it('should store yaks', async () => {

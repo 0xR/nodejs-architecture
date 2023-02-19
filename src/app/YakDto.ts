@@ -1,11 +1,16 @@
+import { IsNotEmpty } from 'class-validator';
 import { Gender } from '../domain/yak/Gender';
 
-export type YakRequestDto = {
+export class YakRequestDto {
+  @IsNotEmpty()
   name: string;
+  @IsNotEmpty()
   gender: Gender;
+  @IsNotEmpty()
   age: number;
-};
+}
 
-export type YakResponseDto = YakRequestDto & {
-  id: string;
-};
+export class MilkYakDto {
+  @IsNotEmpty()
+  yakId: string;
+}

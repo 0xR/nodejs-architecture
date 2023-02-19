@@ -6,13 +6,14 @@ import {
   Get,
   InternalServerErrorException,
   Param,
+  ParseArrayPipe,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
 import { Yak } from '../domain/yak/Yak';
 import { YakRepository } from '../domain/yak/YakRepository';
 import { YakService } from '../domain/yak/YakService';
-import { YakRequestDto, YakResponseDto } from './YakDto';
+import { MilkYakDto, YakRequestDto } from './YakDto';
 
 @Controller('yak')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -23,7 +24,7 @@ export class YakController {
   ) {}
 
   @Get()
-  async getHerd(): Promise<YakResponseDto[]> {
+  async getHerd() {
     return this.yakService.getHerd();
   }
 
@@ -33,7 +34,9 @@ export class YakController {
   }
 
   @Post()
-  async createHerd(@Body() createHerdDto: YakRequestDto[]): Promise<void> {
+  async createHerd(
+    @Body(new ParseArrayPipe({ items: YakRequestDto }))
+    createHerdDto: YakRequestDto[]): Promise<void> {
     let yaks: Yak[] | undefined;
     try {
       yaks = createHerdDto.map((yak) => new Yak(yak));
@@ -48,7 +51,7 @@ export class YakController {
   }
 
   @Post('milk')
-  async milkYak(@Body() milkYakDto: { yakId: string }): Promise<void> {
+  async milkYak(@Body() milkYakDto: MilkYakDto): Promise<void> {
     return this.yakService.milkYak(milkYakDto);
   }
 }

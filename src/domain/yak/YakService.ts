@@ -39,8 +39,8 @@ export class YakService {
     await this.eventDispatcher.dispatch(...yak.takeDomainEvents());
   }
 
-  private getYak(yakId: string) {
-    const yak = this.yakRepository.findYak(yakId);
+  private async getYak(yakId: string) {
+    const yak = await this.yakRepository.findYak(yakId);
     if (!yak) {
       throw new Error(`Yak not found with id ${yakId}`);
     }

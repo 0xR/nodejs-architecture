@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 import { InventoryService } from '../domain/inventory/InventoryService';
 import { YakService } from '../domain/yak/YakService';
 import { InfraModule } from '../infra/infra.module';
