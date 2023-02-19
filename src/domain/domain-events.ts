@@ -1,21 +1,7 @@
-enum Gender {
-  MALE,
-  FEMALE,
-}
-
 export type DomainEvent = {
   id: string;
   type: string;
 };
-
-export type HerdCreatedEvent = {
-  type: 'HerdCreatedEvent';
-  yak: {
-    name: string;
-    age: number;
-    gender: Gender;
-  }[];
-} & DomainEvent;
 
 export type YakMilkedEvent = {
   type: 'YakMilkedEvent';
