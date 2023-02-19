@@ -31,7 +31,7 @@ describe('AppController (e2e)', () => {
       .expect(400)
       .expect({
         statusCode: 400,
-        message: ['gender should not be empty', 'age should not be empty'],
+        message: ['gender must be one of the following values: MALE, FEMALE', 'age should not be empty'],
         error: 'Bad Request'
       });
   });
@@ -40,7 +40,7 @@ describe('AppController (e2e)', () => {
     const server = app.getHttpServer();
     await request(server)
       .post('/yak')
-      .send([{ name: 'mock-yak', age: 50, gender: 0 }])
+      .send([{ name: 'mock-yak', age: 50, gender: 'MALE' }])
       .expect('')
       .expect(201);
     const response = await request(server).get('/yak').expect(200);
@@ -49,7 +49,7 @@ describe('AppController (e2e)', () => {
       {
         id: expect.any(String),
         name: 'mock-yak',
-        gender: 0,
+        gender: 'MALE',
         age: 50,
       },
     ]);
@@ -59,7 +59,7 @@ describe('AppController (e2e)', () => {
     const server = app.getHttpServer();
     await request(server)
       .post('/yak')
-      .send([{ name: 'mock-yak', age: 50, gender: 0 }])
+      .send([{ name: 'mock-yak', age: 50, gender: 'FEMALE' }])
       .expect('')
       .expect(201);
     const {

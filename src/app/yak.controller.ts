@@ -1,16 +1,13 @@
 import {
-  BadRequestException,
   Body,
   ClassSerializerInterceptor,
   Controller,
   Get,
-  InternalServerErrorException,
   Param,
   ParseArrayPipe,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { Yak } from '../domain/yak/Yak';
 import { YakRepository } from '../domain/yak/YakRepository';
 import { YakService } from '../domain/yak/YakService';
 import { MilkYakDto, YakRequestDto } from './YakDto';
@@ -21,7 +18,8 @@ export class YakController {
   constructor(
     private yakService: YakService,
     private yakRepository: YakRepository,
-  ) {}
+  ) {
+  }
 
   @Get()
   async getHerd() {
@@ -36,18 +34,8 @@ export class YakController {
   @Post()
   async createHerd(
     @Body(new ParseArrayPipe({ items: YakRequestDto }))
-    createHerdDto: YakRequestDto[]): Promise<void> {
-    let yaks: Yak[] | undefined;
-    try {
-      yaks = createHerdDto.map((yak) => new Yak(yak));
-    } catch (e) {
-      throw new BadRequestException(e.message);
-    }
-    if (!yaks) {
-      throw new InternalServerErrorException();
-    }
-
-    yaks.forEach((yak) => this.yakService.createYak(yak));
+      createYakRequests: YakRequestDto[]): Promise<void> {
+    createYakRequests.forEach((createYakRequest) => this.yakService.createYak(createYakRequest));
   }
 
   @Post('milk')
