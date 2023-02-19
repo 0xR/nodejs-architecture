@@ -1,7 +1,7 @@
 import { Inventory } from '../domain/inventory/Inventory';
-import { IInventoryRepository } from '../domain/inventory/InventoryRepository';
+import { InventoryRepository } from '../domain/inventory/InventoryRepository';
 
-export class InventoryRepository implements IInventoryRepository {
+export class MemoryInventoryRespository implements InventoryRepository {
   storedInventory: Inventory = Inventory.create();
 
   get(): Inventory {

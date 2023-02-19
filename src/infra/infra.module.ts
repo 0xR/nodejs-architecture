@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { EventDispatcher } from '../domain/ddd/EventDispatcher';
-import { IInventoryRepository } from '../domain/inventory/InventoryRepository';
+import { InventoryRepository } from '../domain/inventory/InventoryRepository';
 import { YakRepository } from '../domain/yak/YakRepository';
-import { InventoryRepository } from './InventoryRepository';
+import { MemoryInventoryRespository } from './MemoryInventoryRespository';
 import { MemoryEventDispatcher } from './memory-event-dispatcher.service';
 import { MemoryYakRepository } from './MemoryYakRepository';
 
@@ -11,8 +11,8 @@ import { MemoryYakRepository } from './MemoryYakRepository';
   providers: [
     { provide: EventDispatcher, useClass: MemoryEventDispatcher },
     { provide: YakRepository, useClass: MemoryYakRepository },
-    { provide: IInventoryRepository, useClass: InventoryRepository },
+    { provide: InventoryRepository, useClass: MemoryInventoryRespository },
   ],
-  exports: [EventDispatcher, YakRepository, IInventoryRepository],
+  exports: [EventDispatcher, YakRepository, InventoryRepository],
 })
 export class InfraModule {}

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { EventDispatcher } from '../ddd/EventDispatcher';
 import { YakMilkedEvent } from '../domain-events';
-import { IInventoryRepository } from './InventoryRepository';
+import { InventoryRepository } from './InventoryRepository';
 
 @Injectable()
 export class InventoryService {
   constructor(
     private eventDispatcher: EventDispatcher,
-    private inventoryRepository: IInventoryRepository,
+    private inventoryRepository: InventoryRepository,
   ) {
     eventDispatcher.listen('YakMilkedEvent', this.handleYakMilkedEvent);
   }

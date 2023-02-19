@@ -4,12 +4,12 @@ import {
   Get,
   UseInterceptors,
 } from '@nestjs/common';
-import { IInventoryRepository } from '../domain/inventory/InventoryRepository';
+import { InventoryRepository } from '../domain/inventory/InventoryRepository';
 
 @Controller('inventory')
 @UseInterceptors(ClassSerializerInterceptor)
 export class InventoryController {
-  constructor(private inventoryRespostory: IInventoryRepository) {}
+  constructor(private inventoryRespostory: InventoryRepository) {}
 
   @Get()
   async getInventory() {
