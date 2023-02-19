@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { EventDispatcher } from '../ddd/EventDispatcher';
-import { Gender } from './Gender';
-import { Yak } from './Yak';
 import { YakRepository } from './YakRepository';
 
 type MilkYakCommand = {
@@ -10,12 +8,6 @@ type MilkYakCommand = {
 
 type ShaveYakCommand = {
   readonly yakId: string;
-};
-
-type CreateYakCommand = {
-  age: number;
-  name: string;
-  gender: Gender;
 };
 
 @Injectable()
@@ -29,8 +21,7 @@ export class YakService {
     return this.yakRepository.getAll();
   }
 
-  async createYak({ age, name, gender }: CreateYakCommand) {
-    const yak = new Yak(undefined, name, gender, age);
+  async createYak(yak) {
     await this.yakRepository.save(yak);
     await this.eventDispatcher.dispatch(...yak.takeDomainEvents());
   }

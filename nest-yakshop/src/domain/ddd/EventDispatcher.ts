@@ -1,7 +1,8 @@
-import { DomainEvent, YakMilkedEvent } from '../domain-events';
+import { YakMilkedEvent } from '../domain-events';
+import * as DomainEvents from '../domain-events';
 
 export abstract class EventDispatcher {
-  abstract dispatch(...domainEvents: DomainEvent[]): Promise<void>;
+  abstract dispatch(...domainEvents: (typeof DomainEvents)[]): Promise<void>;
 
   listen: (
     type: YakMilkedEvent['type'],
